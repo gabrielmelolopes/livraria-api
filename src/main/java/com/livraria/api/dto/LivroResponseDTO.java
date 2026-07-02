@@ -1,0 +1,10 @@
+package com.livraria.api.dto;
+
+import java.math.BigDecimal;
+
+public record LivroResponseDTO(
+        String titulo,
+        BigDecimal preco,
+        Integer ano_publicacao,
+        AutorResumoDTO autorResumoDTO
+) {}
