@@ -9,4 +9,5 @@ public interface LivroService {
     Livro buscarPorId(Integer id);
     List<Livro> listarTodos();
     List<Livro> listarPorAutor(Integer id);
+    void deletarLivro(Integer id);
 }

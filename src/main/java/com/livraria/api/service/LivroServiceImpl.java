@@ -37,4 +37,9 @@ public class LivroServiceImpl implements LivroService {
     public List<Livro> listarPorAutor(Integer id) {
         return livroRepository.findByAutorId(id);
     }
+
+    @Override
+    public void deletarLivro(Integer id) {
+        livroRepository.deleteById(id);
+    }
 }

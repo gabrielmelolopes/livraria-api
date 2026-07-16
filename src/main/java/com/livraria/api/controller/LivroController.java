@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/livros")
 public class LivroController {
@@ -30,6 +31,7 @@ public class LivroController {
         Livro livroRetornado = livroService.salvarLivro(livro);
         AutorResumoDTO autorResumoDTO = new AutorResumoDTO(livroRetornado.getAutor().getId(), livroRetornado.getAutor().getNome());
         LivroResponseDTO response = new LivroResponseDTO(
+                livroRetornado.getId(),
                 livroRetornado.getTitulo(),
                 livroRetornado.getPreco(),
                 livroRetornado.getAno_publicacao(),
@@ -44,6 +46,7 @@ public class LivroController {
         Livro livroRetornado = livroService.buscarPorId(id);
         AutorResumoDTO autorResumoDTO = new AutorResumoDTO(livroRetornado.getAutor().getId(), livroRetornado.getAutor().getNome());
         LivroResponseDTO response = new LivroResponseDTO(
+                livroRetornado.getId(),
                 livroRetornado.getTitulo(),
                 livroRetornado.getPreco(),
                 livroRetornado.getAno_publicacao(),
@@ -60,6 +63,7 @@ public class LivroController {
         for(Livro l : livroRetornado){
             AutorResumoDTO autorResumoDTO = new AutorResumoDTO(l.getAutor().getId(), l.getAutor().getNome());
             LivroResponseDTO livroResponse = new LivroResponseDTO(
+                    l.getId(),
                     l.getTitulo(),
                     l.getPreco(),
                     l.getAno_publicacao(),
@@ -77,6 +81,7 @@ public class LivroController {
         for(Livro l : livroRetornado) {
             AutorResumoDTO autorResumoDTO = new AutorResumoDTO(l.getAutor().getId(), l.getAutor().getNome());
             LivroResponseDTO livroResponse = new LivroResponseDTO(
+                    l.getId(),
                     l.getTitulo(),
                     l.getPreco(),
                     l.getAno_publicacao(),
@@ -85,5 +90,11 @@ public class LivroController {
             response.add(livroResponse);
         }
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Integer id){
+        livroService.deletarLivro(id);
+        return ResponseEntity.noContent().build();
     }
 }
