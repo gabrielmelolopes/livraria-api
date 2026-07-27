@@ -51,6 +51,14 @@ A API estará disponível em `http://localhost:8080`.
 
 ---
 
+## API em produção
+
+A API está disponível publicamente em:
+
+https://livraria-api-production.up.railway.app
+
+---
+
 ## Endpoints
 
 ### Autores
